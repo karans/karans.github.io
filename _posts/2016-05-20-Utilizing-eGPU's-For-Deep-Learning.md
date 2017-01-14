@@ -25,7 +25,9 @@ When I received my PCIe box, I was concerned that It would take a while to confi
 
 In terms of drivers, there setup was much easier than expected, as [goalque](https://github.com/goalque/automate-eGPU) already wrote a script that detected the card, pulled the drivers from Nvidia and changed the appropriate IOPCI tunnelling files. When I rebooted the card was recognized!
 
-![System Info](http://i.imgur.com/1ARjUeV.png =400x400)
+<p align="center">
+  <img src="http://i.imgur.com/1ARjUeV.png" style="width:500px;height:500px;">
+</p>
 
 The reason why most people use Nvidia cards to run these sort of computations is due to CUDA. CUDA, proprietary to Nvidia, allows users to directly run code directly on the GPU. Many languages and packages targeted towards deep learning have integrated their libraries with CUDA to let users run demanding code on GPUs in the comfort of high level languages such as Python or Lua. Nvidia's cuDNN also optimizes many of the operations that occur during machine learning and have been utilized by libraries, such as Theano, as well. I then continued by installed CUDA (I recommend using the [full](https://developer.nvidia.com/cuda-downloads) installation for those who just started) and cuDNN (you need to make a free developer account). 
 
@@ -38,11 +40,15 @@ Video cards get hot, especially with the stock cooler that comes with the Titan 
 ### Performance Tests
 Regardless of the potential speed and thermal issues, I was quite pleased by how the card performed. Running [convolutional_mlp](http://deeplearning.net/tutorial/lenet.html), I was able to get a 45-50x speedup. 
 
-![convmlp](http://i.imgur.com/2S7dG7E.png =500x300)
+<p align="center">
+  <img src="http://i.imgur.com/2S7dG7E.png" style="width:500px;height:300px;">
+</p>
 
 Running some synthetic benchmarks (I might test and post other ones in the future), I got about the same score as a Titan X would in a rig (could be in the margin of error due to different CPUs, PCIe configs, RAM, etc.).
 
-![OB](http://i.imgur.com/gYM4r9h.jpg =400x250)![stats](http://i.imgur.com/mGasect.png =400x250)
+<p align="center">
+  <img src="http://i.imgur.com/gYM4r9h.jpg" style="width:400px;height:250px;"> <img src="http://i.imgur.com/mGasect.png" style="width:400px;height:250px;">
+</p>
 
 Finally when testing out my personal code, after adjusting some of the CUDA and Theano global variables, I got it to work smoothly. From the different models I was testing, MLP, CNN, RNN, I was able to get around a 23-30x speedup from the i7-4870HQ in my MacBook to the Titan X.
 
