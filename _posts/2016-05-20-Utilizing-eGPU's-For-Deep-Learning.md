@@ -16,7 +16,7 @@ The second task was deciding how to set it up. Since I commute often, I didn't w
 
 There are a few companies that manufacture these solutions intended to host typical PCIe cards such as RAID cards or video capture cards, but don't supply enough power to run a GPU by default. Most people are able to take apart these platforms to add their own power supply and PCIe riser to overcome the power limit. Since I didn't want to spend too much time tinkering with the hardware, I opted for a prebuilt solution by [Bizon](https://bizon-tech.com/us/bizonbox2-egpu.html).
 
-![Box](http://i.imgur.com/BXCvk3U.jpg =400x300)
+![Box](http://i.imgur.com/BXCvk3U.jpg =200x150)
 ![Setup](http://i.imgur.com/E4pyuJo.jpg =400x300)
 
 ### Compatibility
