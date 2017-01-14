@@ -16,7 +16,9 @@ The second task was deciding how to set it up. Since I commute often, I didn't w
 
 There are a few companies that manufacture these solutions intended to host typical PCIe cards such as RAID cards or video capture cards, but don't supply enough power to run a GPU by default. Most people are able to take apart these platforms to add their own power supply and PCIe riser to overcome the power limit. Since I didn't want to spend too much time tinkering with the hardware, I opted for a prebuilt solution by [Bizon](https://bizon-tech.com/us/bizonbox2-egpu.html).
 
+<p align="center">
 ![Box](http://i.imgur.com/BXCvk3U.jpg){:height="300px" width="400px"} ![Setup](http://i.imgur.com/E4pyuJo.jpg){:height="300px" width="400px"} 
+</p>
 
 ### Compatibility
 When I received my PCIe box, I was concerned that It would take a while to configure OSX with driver modifications. I also was questioning if it would work with Theano, a tensor python library I am writing my code with. 
