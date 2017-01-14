@@ -17,7 +17,7 @@ The second task was deciding how to set it up. Since I commute often, I didn't w
 There are a few companies that manufacture these solutions intended to host typical PCIe cards such as RAID cards or video capture cards, but don't supply enough power to run a GPU by default. Most people are able to take apart these platforms to add their own power supply and PCIe riser to overcome the power limit. Since I didn't want to spend too much time tinkering with the hardware, I opted for a prebuilt solution by [Bizon](https://bizon-tech.com/us/bizonbox2-egpu.html).
 
 <p align="center">
-  <img src="http://i.imgur.com/BXCvk3U.jpg" style="width:600px;height:450px;"> <img src="http://i.imgur.com/E4pyuJo.jpg" style="width:600px;height:450px;">
+  <img src="http://i.imgur.com/BXCvk3U.jpg" style="width:500px;height:325px;"> <img src="http://i.imgur.com/E4pyuJo.jpg" style="width:500px;height:325px;">
 </p>
 
 ### Compatibility
@@ -47,7 +47,7 @@ Regardless of the potential speed and thermal issues, I was quite pleased by how
 Running some synthetic benchmarks (I might test and post other ones in the future), I got about the same score as a Titan X would in a rig (could be in the margin of error due to different CPUs, PCIe configs, RAM, etc.).
 
 <p align="center">
-  <img src="http://i.imgur.com/gYM4r9h.jpg" style="width:400px;height:250px;"> <img src="http://i.imgur.com/mGasect.png" style="width:400px;height:250px;">
+  <img src="http://i.imgur.com/gYM4r9h.jpg" style="width:500px;height:350px;"> <img src="http://i.imgur.com/mGasect.png" style="width:500px;height:350px;">
 </p>
 
 Finally when testing out my personal code, after adjusting some of the CUDA and Theano global variables, I got it to work smoothly. From the different models I was testing, MLP, CNN, RNN, I was able to get around a 23-30x speedup from the i7-4870HQ in my MacBook to the Titan X.
