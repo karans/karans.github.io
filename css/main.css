@@ -42,7 +42,7 @@ ul.posts li {
     list-style: none;
 }
 
-figure {
+figure img figcaption{
   display: block;
   margin-left: auto;
   margin-right: auto;
