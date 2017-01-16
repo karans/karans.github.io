@@ -42,8 +42,12 @@ ul.posts li {
     list-style: none;
 }
 
-figure img figcaption{
+figure img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+figure figcaption {
+    text-align: center
 }
