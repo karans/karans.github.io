@@ -55,3 +55,7 @@ Secure boot is process that is meant to stop other malicious programs or operati
 I also ran into some small problems when defining my partition when installing Ubuntu, which somehow corrupted Windows boot. After re-installation of Windows, the bootloader for Ubuntu was also removed, but luckily was recovered through boot repair...
 
 Basically I would recommend to those who are dual booting on their systems to get the drivers on either OS up and running before installing any additional software. 
+
+## Further Tests
+
+I am going to write up a comparison on data transfer speeds and overall GPU performance with this PC build versus the eGPU setup I had previously. I would expect speeds on the eGPU/laptop setup to be around 60-80% of the desktop speed, but I have not seen these results myself. All eGPU benchmarks on the web are game FPS scores and synthetic benchmarks, so tests using machine learning benchmarks would be useful. 
