@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "eGPU For Deep Learning"
+title: "Connecting an eGPU to a MacBook For Deep Learning"
 date: 2016-05-20
 ---
 

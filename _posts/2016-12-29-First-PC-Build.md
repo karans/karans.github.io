@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "First PC Build with Linux and CUDA Installation!"
+title: "Home PC Build with Linux and CUDA Installation"
 date: 2016-12-29
 ---
 
