@@ -1,11 +1,21 @@
 ---
 layout: default
-title: My Blog
 ---
-	<h1>{{ page.title }}</h1>
-	<ul class="posts">
-	<p> Here are some of my projects. </p>
-	  {% for post in site.posts %}
-	    <li> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-	  {% endfor %}
-	</ul>
+
+<!-- <div class="header-bar">
+  <h1>{{ site.blog_name }}</h1>
+  <h2>{{ site.blog_description }}</h2>
+</div> -->
+
+
+<ul class="post-list">
+  {% for post in paginator.posts %}
+    <li>
+      <h2><a class="post-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
+      <p class="post-meta">{{ post.date | date: '%B %-d, %Y' }}</p>
+      <p>{{ post.description }}</p>
+    </li>
+  {% endfor %}
+</ul>
+
+{% include pagination.html %}

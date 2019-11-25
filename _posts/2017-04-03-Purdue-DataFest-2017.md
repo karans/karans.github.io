@@ -20,7 +20,7 @@ Given this larger set of data, I had to parse it into a numeric representation. 
 Testing with a few thousand examples we were able to generate our new parsed data set by splitting, encoding, and normalizing attributes relatively fast. We wanted to look at how booking versus not booking results looked like with the features that we generated. When we reduced the data to 3 dimensions we saw two clusters of data, but they didn't separate the booking status. 
 
 <p align="center">
-  <img src="/documents/images/blog/DataFest2017/PCA.png" style="width:1000px;height:750px;">
+  <img src="/assets/img/blog/DataFest2017/PCA.png" style="width:750px;height:500px;">
 </p>
 
 Some of these points could have been outliers, since we only used a small portion of the data, so I decided to take the time to parse all 10 million examples for the same test and to use later for prediction. 
@@ -66,7 +66,7 @@ for process in processes:
 The performance was improved by a large amount, as I was able to utilize all our computing power. Neat!
 
 <p align="center">
-  <img src="/documents/images/blog/DataFest2017/cpu.png" style="width:1000px;height:750px;">
+  <img src="/assets/img/blog/DataFest2017/cpu.png" style="width:750px;height:400px;">
 </p>
 
 ### The Takeaway
@@ -74,9 +74,9 @@ The performance was improved by a large amount, as I was able to utilize all our
 When I fully parsed the data, I had little time to actually build predictive models. A last effort led to running the data through various models from Scikit-learn, which performed sub-optimally. Looking at the same reduced graph, it showed that booking couldn't be easily separated when looking at a larger sample size. 
 
 <p align="center">
-  <img src="/documents/images/blog/DataFest2017/PCA2.png" style="width:900px;height:750px;">
+  <img src="/assets/img/blog/DataFest2017/PCA2.png" style="width:750px;height:600px;">
 </p>
 
 If I spent more time feature engineering and used under and oversampling techniques, the results could have been more significant, as other DataFest teams were able to make more useful predictive models for booking using new features and ensemble techniques.
 
-Regarding parsing, next time I spend more time parsing code by attribute and dealing with bad values accordingly. The time it takes to parse by attribute instead of by individual instance would have saved a lot of preprocessing time to generate the data. An overview of our entire team's presentation can be viewed [here](/documents/images/blog/DataFest2017/presentation.pdf).
+Regarding parsing, next time I spend more time parsing code by attribute and dealing with bad values accordingly. The time it takes to parse by attribute instead of by individual instance would have saved a lot of preprocessing time to generate the data. An overview of our entire team's presentation can be viewed [here](/assets/img/blog/DataFest2017/presentation.pdf).

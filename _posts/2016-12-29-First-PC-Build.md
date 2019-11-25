@@ -18,7 +18,7 @@ Before coming home for winter break, I decided that I would build a PC for deep 
 * ASUS Titan X Maxwell (from my eGPU setup)
 
 <p align="center">
-  <img src="/documents/images/blog/PCBuild/parts.jpg" style="width:800px;height:600px;">
+  <img src="/assets/img/blog/PCBuild/parts.jpg" style="width:800px;height:600px;">
 </p>
 
 The main dilemma I had was with the CPU architecture I wanted. With Intel the Skylake chips went up to 4 cores and were powerful enough for single threaded parsing and RAM, GPU, etc. interfacing. The other option was to go with the Broadwell E lineup, which had more cores and were more expensive. I decided to go with a Broadwell E chip for their increased multicore performance. 
@@ -30,18 +30,18 @@ Within this, I was looking between the 6800k and the 6850k, both having 6 cores,
 Even though this was my first build, the build process was relatively straight forward. I first installed components on the motherboard. I was concerned when installing the CPU, as I had to put a lot of pressure to secure it into the socket, so much that I was worried that I would snap an arm off. The RAM and the SSD were straight forward. Although I almost forgot that the SSD had to placed on a mount before screwing into place, which stops it from bending (this is why we read manuals). 
 
 <p align="center">
-  <img src="/documents/images/blog/PCBuild/mobo.jpg" style="width:600px;height:800px;">
+  <img src="/assets/img/blog/PCBuild/mobo.jpg" style="width:600px;height:800px;">
 </p>
 
 I then plugged the cables I needed into the PSU and installed it into the case so I would have those cables ready. The motherboard came on to the case next followed by the CPU cooler. This case only supported a 280mm radiator in the front of the case, so I had to install the cooler in the the front with the air being pulled in. Later I would check that the fans in the front and the top were oriented so they were pushing the air out. I use the tabs and the holes in the back of the case to cluster the cables together. 
  
 <p align="center">
-  <img src="/documents/images/blog/PCBuild/psu.jpg" style="width:450px;height:600px;"> <img src="/documents/images/blog/PCBuild/cooler.jpg" style="width:450px;height:600px;"><img src="/documents/images/blog/PCBuild/cables.jpg" style="width:450px;height:600px;">
+  <img src="/assets/img/blog/PCBuild/psu.jpg" style="width:450px;height:600px;"> <img src="/assets/img/blog/PCBuild/cooler.jpg" style="width:450px;height:600px;"><img src="/assets/img/blog/PCBuild/cables.jpg" style="width:450px;height:600px;">
 </p>
 
 After seating the GPU I needed to connect various headers to the motherboard. I kept the cables from the fans, USB headers, audio, and power button on the outskirts of the motherboard to give it a clean look. After all this I turned it on and it was able to post on the first try. The resulting look is pretty neat!
 <p align="center">
-  <img src="/documents/images/blog/PCBuild/internals.jpg" style="width:600px;height:800px;"><img src="/documents/images/blog/PCBuild/setup.jpg" style="width:800px;height:600px;">
+  <img src="/assets/img/blog/PCBuild/internals.jpg" style="width:600px;height:800px;"><img src="/assets/img/blog/PCBuild/setup.jpg" style="width:800px;height:600px;">
 </p>
 
 ## Software Installation
