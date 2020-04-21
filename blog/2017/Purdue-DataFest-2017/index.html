@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title> | Purdue DataFest 2017: Lessons in Data Parsing</title>
+  <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+
+  
+
+  <link rel="shortcut icon" href="http://localhost:4000/assets/img/favicon.ico">
+
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/blog/2017/Purdue-DataFest-2017/">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    
+    <span class="site-title">
+        
+        <strong></strong> 
+    </span>
+    
+
+    <nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+      <div class="trigger">
+        <!-- About -->
+        <a class="page-link" href="http://localhost:4000/">about</a>
+
+        <!-- Blog -->
+        <a class="page-link" href="http://localhost:4000/blog/">blog</a>
+
+        <!-- Pages -->
+        
+          
+        
+          
+        
+          
+        
+          
+            <a class="page-link" href="http://localhost:4000/projects/">projects</a>
+          
+        
+          
+            <a class="page-link" href="http://localhost:4000/publications/">publications</a>
+          
+        
+          
+        
+
+        <!-- CV link -->
+        <!-- <a class="page-link" href="http://localhost:4000/assets/pdf/CV.pdf">vitae</a> -->
+
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Purdue DataFest 2017: Lessons in Data Parsing</h1>
+    <p class="post-meta">April 3, 2017</p>
+  </header>
+
+  <article class="post-content">
+    <h3 id="datafest">DataFest</h3>
+<p>Every year the American Statistical Association hosts the DataFest competition. The main goal of the competition is to spend a few days analyzing a new dataset and presenting actionable insights in teams. Every year a different dataset is provided by a different company, who describe the dataset and ask some questions that they are interested in learning themselves. This year’s data came from Expedia’s hotel lineup.</p>
+
+<h3 id="data">Data</h3>
+<p>We were given two data files. One included the search queries of users with the hotel parameters they searched, how many hotels they looked at, whether they booked a hotel, and other metadata. The second file had information regarding the destinations that were being searched in the first file. This file had numerous scores of a set of popular activities in vacations spots for all the distinct vacations destinations in the first file.</p>
+
+<h3 id="parsing">Parsing</h3>
+<p>One of our team’s goals was to try to predict bookings given the data, which I worked on. We had some success with this in previous DataFest 2016, but we didn’t know if it was even possible given the data provided. Regardless I had to parse the data in a way that could be used by predictive models.</p>
+
+<p>I first started by joining the two datasets together so that each entry for the destination in the first file would also have specific destination information from the second file. For this prediction task we wanted to start off with the richest dataset possible and see which attributes I needed later.</p>
+
+<p>Given this larger set of data, I had to parse it into a numeric representation. With Pandas I was able to split attributes such as date and time with ease, and categorical variables into one hot encoded representations. One debate was whether or not to encode large categorical attributes, such as city where there are lot of possible values. Taking the city example, I didn’t encode it as the team debated to use popular activities scores to help distinguish the destinations.</p>
+
+<p>Testing with a few thousand examples we were able to generate our new parsed data set by splitting, encoding, and normalizing attributes relatively fast. We wanted to look at how booking versus not booking results looked like with the features that we generated. When we reduced the data to 3 dimensions we saw two clusters of data, but they didn’t separate the booking status.</p>
+
+<p align="center">
+  <img src="/assets/img/blog/DataFest2017/PCA.png" style="width:750px;height:500px;" />
+</p>
+
+<p>Some of these points could have been outliers, since we only used a small portion of the data, so I decided to take the time to parse all 10 million examples for the same test and to use later for prediction.</p>
+
+<p>Issues came when parsing the data by attribute as some attributes were corrupted or invalid (ie the year 20015 will throw off your Pandas Datetime parser). Individually this is fine, as we can skip those examples, but with the splits and encodings, having issues with multiple attributes means that we have to remove the features that we have already added to the parsed dataset for the example that was corrupted (I didn’t want to go to much into imputation given the time I had to work on this).</p>
+
+<p>This process of removing the corrupted example by index was getting complicated and had a higher chance contaminating the data if features for different instances got mixed. I then decided to parse each instance individually. Compared to performing splitting, encoding, and normalizing by each attribute at a time, performing it on each row is a lot less efficient, as I need to switch between those parsing methods based on what attribute I was parsing at the time, versus a batch operation on a column is much faster with Pandas and Numpy.</p>
+
+<p>In this space, using ThreadPool versus Processes made all the difference. Threading the parsing process using Python’s ThreadPool permuting in the same memory space only was able to utilize 1/2 of my machine’s cores at around 20% efficiency. Essentially having no threading for tasks like these is better.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pool</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>
+
+<span class="n">chunkSize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">threads</span><span class="p">)))</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="nb">map</span><span class="p">(</span><span class="n">generateDF</span><span class="p">,</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">chunkSize</span> <span class="o">*</span> <span class="n">i</span><span class="p">:</span><span class="n">chunkSize</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))])</span>
+<span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
+<span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> 
+</code></pre></div></div>
+
+<p>Utilizing some basic processing code we were able to isolate each of the parsing problems and combine the results form each process:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parsedDFs</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+<span class="n">threads</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+<span class="n">chunkSize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">threads</span><span class="p">)))</span>
+
+<span class="n">processes</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">threads</span><span class="p">):</span>
+	<span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">generateDF</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">chunkSize</span> <span class="o">*</span> <span class="n">i</span><span class="p">:</span><span class="n">chunkSize</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">parsedDFs</span><span class="p">))</span>
+	<span class="n">processes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+	<span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="n">returnDF</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">threads</span><span class="p">):</span>
+	<span class="n">returnDF</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">parsedDFs</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">:</span>
+	<span class="n">process</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>The performance was improved by a large amount, as I was able to utilize all our computing power. Neat!</p>
+
+<p align="center">
+  <img src="/assets/img/blog/DataFest2017/cpu.png" style="width:750px;height:400px;" />
+</p>
+
+<h3 id="the-takeaway">The Takeaway</h3>
+
+<p>When I fully parsed the data, I had little time to actually build predictive models. A last effort led to running the data through various models from Scikit-learn, which performed sub-optimally. Looking at the same reduced graph, it showed that booking couldn’t be easily separated when looking at a larger sample size.</p>
+
+<p align="center">
+  <img src="/assets/img/blog/DataFest2017/PCA2.png" style="width:750px;height:600px;" />
+</p>
+
+<p>If I spent more time feature engineering and used under and oversampling techniques, the results could have been more significant, as other DataFest teams were able to make more useful predictive models for booking using new features and ensemble techniques.</p>
+
+<p>Regarding parsing, next time I spend more time parsing code by attribute and dealing with bad values accordingly. The time it takes to parse by attribute instead of by individual instance would have saved a lot of preprocessing time to generate the data. An overview of our entire team’s presentation can be viewed <a href="/assets/img/blog/DataFest2017/presentation.pdf">here</a>.</p>
+
+  </article>
+
+  
+
+</div>
+
+      </div>
+    </div>
+
+    <footer>
+
+  <div class="wrapper">
+    &copy; Copyright 2020 .
+    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+
+    
+  </div>
+
+</footer>
+
+
+    <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<!-- Load Common JS -->
+<script src="http://localhost:4000/assets/js/common.js"></script>
+
+
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="http://localhost:4000/assets/js/katex.js"></script>
+
+
+
+
+<!-- Include custom icon fonts -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.min.css">
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-XXXXXXXXX', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </body>
+
+</html>
