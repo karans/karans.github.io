@@ -8,7 +8,7 @@ profile:
   align: right
   image: headshot.png
   address: >
-    <p>Coda Building E1540H</p>
+    <p><a href="https://ml.gatech.edu/">ML@GT</a> - CODA S1125H</p>
     <p>Atlanta, GA 30308</p>
 
 news: true

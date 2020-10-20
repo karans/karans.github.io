@@ -1,0 +1,7 @@
+to serve: bundle exec jekyll serve
+
+add and commit the changed files
+
+from the base directory run: ./bin/deploy
+
+running deploy from any other directory wil lead to a failed deployment, since it copies the site resources to that specific folder, which is used for building the site.
