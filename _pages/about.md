@@ -15,7 +15,7 @@ news: true
 social: true
 ---
 
-I am currently a first year machine learning Ph.D. student at Georgia Tech. My research is in the intersection of deep learning and symbolic reasoning, advised by [Prof. Le Song](https://www.cc.gatech.edu/~lsong/). My other interests include feature engineering over graphs, interpretable ML, and healthcare ML problems.
+I am currently a machine learning Ph.D. student at Georgia Tech. My research is in the intersection of deep learning and symbolic reasoning, advised by [Prof. Le Song](https://www.cc.gatech.edu/~lsong/). My other interests include feature engineering over graphs, interpretable ML, and healthcare ML problems.
 
 I previously worked at [Astound](https://astound.ai) as a Data Scientist, where I built customer ML models and developed model prototyping frameworks. My research was in human-in-the-loop learning, to correct a large number mislabeled text data used for classification by a neural network, while minimizing the number of re-annotations needed.
 
