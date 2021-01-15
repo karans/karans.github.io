@@ -6,7 +6,7 @@ description: Georgia Institute of Technology
 
 profile:
   align: right
-  image: headshot.png
+  image: headshot_v2.jpg
   address: >
     <p><a href="https://ml.gatech.edu/">ML@GT</a> - CODA S1125H</p>
     <p>Atlanta, GA 30308</p>
