@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Karan Samel</title>
+  <title>Karan Samel | Optimizing CTR with Deep Learning</title>
   <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 ">
 
@@ -15,7 +15,7 @@
   <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
   <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="canonical" href="/blog/">
+  <link rel="canonical" href="/projects/CTR/">
 </head>
 
 
@@ -86,36 +86,37 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="header-bar">
-  <h1>Karan Samel</h1>
-  <h2>Some non-research related thoughts and quirks</h2>
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Optimizing CTR with Deep Learning</h1>
+    <h5 class="post-description">2015-2017</h5>
+  </header>
+
+  <article class="post-content Optimizing CTR with Deep Learning clearfix">
+    <p>This is a project I started on sophomore year at Purdue through an NSF Research Experiences for Undergraduates grant 1246818. This would not been possible without the <a href="http://llc.stat.purdue.edu">Statistics Living Learning Community</a> that I was part of that year, headed by Prof. Mark Daniel Ward.</p>
+
+<p>The project I worked is based on the fact that a large part of electronic retail relies on understanding consumer product interests. This has led to the development of mathematical models in advertisement agencies to predict if the consumer they are targeting will click on their advertisement. Achieving the highest click prediction rate would mean that these agencies can pay to place their on line advertisements effectively to target people most interested in their product. Most of these predictions are based on regression models. Our goal was to utilize deep learning models to achieve better scores than the known regression models.</p>
+
+<p>The data that we used was from the iPinYou competition, where competitors were tasked to build a model that would achieve a high click through rate (CTR). iPinYou provided advertisement data from 9 companies. For each instance in the data we were given various attributes of the person that the electronic advertisement was sent to as well as if the person clicked on the advertisement. The data was originally split into different seasons of the iPinYou competition so the data for each advertiser had to be aggregated. After that, some of the variables had to be removed, spliced, or one hot encoded.</p>
+
+<p>Once we had our data we tested our predictive power using a convolutional neural net and then a neural network model. Using our model configuration, we were not able to achieve higher predictive power than the regressions we compared it to, but the way we arranged our data made our models more interpretable to further analysis.</p>
+
+<figure>
+    <img src="/assets/img/projects/CTR/diagram.png" style="width:700px;height:350px;" />
+    <figcaption>CNN model visualization</figcaption>
+</figure>
+
+<p>I was advised by Dr. Xiao Wang and Dr. Quiang Liu at Purdue. The results are going to be published in <a href="http://docs.lib.purdue.edu/jpur/">JPUR</a> 2017.</p>
+
+  </article>
+
+  
+
+  
+
+
 </div>
-
-
-<ul class="post-list">
-  
-    <li>
-      <h2><a class="post-title" href="/blog/2017/Purdue-DataFest-2017/">Purdue DataFest 2017: Lessons in Data Parsing</a></h2>
-      <p class="post-meta">April 3, 2017</p>
-      <p></p>
-    </li>
-  
-    <li>
-      <h2><a class="post-title" href="/blog/2016/First-PC-Build/">Home PC Build with Linux and CUDA Installation</a></h2>
-      <p class="post-meta">December 29, 2016</p>
-      <p></p>
-    </li>
-  
-    <li>
-      <h2><a class="post-title" href="/blog/2016/Utilizing-eGPU's-For-Deep-Learning/">Connecting an eGPU to a MacBook For Deep Learning</a></h2>
-      <p class="post-meta">May 20, 2016</p>
-      <p></p>
-    </li>
-  
-</ul>
-
-
-
 
       </div>
     </div>
